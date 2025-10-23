@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+            #a{
+                position: absolute;
+                top: 100px;
+                left: 100px;
+                cursor: grab;
+				z-index: 1000;
+
+            }
+        </style>
+
+        
+    </head>
+    <body>
+        <div id="a">
+            <audio id="a1" controls>
+                <source src="ElevenLabs_2025-10-21T07_07_11_Charlie_pre_sp100_s50_sb75_se0_b_m2.mp3">
+            </audio>
+			
+        </div> 
+		
+		<script>
+			const container = document.getElementById('a1');
+let isDragging = false;
+let offsetX, offsetY;
+
+container.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  offsetX = e.clientX - container.getBoundingClientRect().left;
+  offsetY = e.clientY - container.getBoundingClientRect().top;
+  container.style.cursor = 'grabbing';
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+
+  container.style.left = (e.clientX - offsetX) + 'px';
+  container.style.top = (e.clientY - offsetY) + 'px';
+});
+
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+  container.style.cursor = 'grab';
+});
+        </script>
+    </body>
+</html>
